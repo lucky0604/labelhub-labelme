@@ -79,7 +79,16 @@ class LabelCocoFile(object):
             image_obj["height"] = k.get("imageHeight")
             image_obj["width"] = k.get("imageWidth")
             image_obj["id"] = image_id
-            image_obj["file"] = folder + "/" + k.get("imagePath")
+            # image_obj["file"] = os.path.abspath(k.get("imagePath")) + "/" + k.get("imagePath")
+            for root, dirname, filenames in os.walk(folder):
+                for filename in filenames:
+                    if filename == k.get("imagePath"):
+                        path = os.path.join(root, filename).replace("\\", "/")
+                        patharr = path.split("/")
+                        foldername = folder.split("/")[-1]
+                        pathname = "/".join(patharr[patharr.index(foldername):])
+                        image_obj["file"] = pathname
+
             image_id += 1
             for i in k.get("shapes"):
                 label_set.add(i.get("label"))
