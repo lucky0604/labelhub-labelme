@@ -139,3 +139,5 @@ cython_debug/
 .idea
 pyvenv.cfg
 Scripts/
+.DS_Store
+bin/
