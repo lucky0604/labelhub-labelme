@@ -433,6 +433,7 @@ class MainWindow(QtWidgets.QMainWindow):
         hideAll = action(
             self.tr("&Hide\nPolygons"),
             functools.partial(self.togglePolygons, False),
+            shortcuts["hide_all"],
             icon="eye",
             tip=self.tr("Hide all polygons"),
             enabled=False,
@@ -440,9 +441,16 @@ class MainWindow(QtWidgets.QMainWindow):
         showAll = action(
             self.tr("&Show\nPolygons"),
             functools.partial(self.togglePolygons, True),
+            shortcuts["show_all"],
             icon="eye",
             tip=self.tr("Show all polygons"),
             enabled=False,
+        )
+
+        cancelEdit = action(
+            self.tr("&Cancel Edit"),
+            self.cancelEditMode,
+            shortcuts["cancel_edit"],
         )
 
         help = action(
@@ -580,6 +588,7 @@ class MainWindow(QtWidgets.QMainWindow):
             copy=copy,
             undoLastPoint=undoLastPoint,
             undo=undo,
+            cancelEdit=cancelEdit,
             addPointToEdge=addPointToEdge,
             removePoint=removePoint,
             createMode=createMode,
@@ -689,6 +698,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 None,
                 hideAll,
                 showAll,
+                cancelEdit,
                 None,
                 zoomIn,
                 zoomOut,
@@ -1430,6 +1440,11 @@ class MainWindow(QtWidgets.QMainWindow):
     def togglePolygons(self, value):
         for item in self.labelList:
             item.setCheckState(Qt.Checked if value else Qt.Unchecked)
+
+    # awk actions
+    def cancelEditMode(self):
+        self.canvas.setEditing(True)
+        self.actions.createMode.setEnabled(True)
 
     def loadFile(self, filename=None):
         """Load the specified file, or the last opened file if None."""

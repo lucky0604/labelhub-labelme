@@ -99,3 +99,7 @@ shortcuts:
   add_point_to_edge: Ctrl+Shift+P
   edit_label: Ctrl+E
   toggle_keep_prev_mode: Ctrl+P
+  # awk custom shortcuts
+  hide_all: Ctrl+1
+  show_all: Ctrl+2
+  cancel_edit: Ctrl+3
