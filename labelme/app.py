@@ -135,6 +135,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 "Press 'Esc' to deselect."
             )
         )
+        # TODO: here to add txt labels
         if self._config["labels"]:
             for label in self._config["labels"]:
                 item = self.uniqLabelList.createItemFromLabel(label)
