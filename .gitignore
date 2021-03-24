@@ -140,3 +140,4 @@ pyvenv.cfg
 Scripts/
 .DS_Store
 bin/
+.anaconda3/

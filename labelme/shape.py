@@ -1,6 +1,7 @@
 import copy
 import math
 
+from qtpy.QtGui import QFont
 from qtpy import QtCore
 from qtpy import QtGui
 
@@ -140,7 +141,9 @@ class Shape(object):
                 assert len(self.points) in [1, 2]
                 if len(self.points) == 2:
                     rectangle = self.getRectFromLine(*self.points)
+                    label_info = self.label
                     line_path.addRect(rectangle)
+                    line_path.addText(rectangle.width() / 4 + rectangle.left(), rectangle.height() / 2 + rectangle.top(), QFont("monospace", 26), label_info)
                 for i in range(len(self.points)):
                     self.drawVertex(vrtx_path, i)
             elif self.shape_type == "circle":
