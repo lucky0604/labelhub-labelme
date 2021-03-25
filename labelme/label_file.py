@@ -147,10 +147,6 @@ class LabelCocoFile(object):
             json.dump(data, f, ensure_ascii=False, indent=2, cls=DateEncoder)
 
 
-        print(result, " ====== result json ======")
-
-
-
     @staticmethod
     def read_json_file(foldername):
         datas = []

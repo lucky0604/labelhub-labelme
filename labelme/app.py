@@ -71,6 +71,7 @@ class MainWindow(QtWidgets.QMainWindow):
             config = get_config()
         self._config = config
 
+
         # set default shape colors
         Shape.line_color = QtGui.QColor(*self._config["shape"]["line_color"])
         Shape.fill_color = QtGui.QColor(*self._config["shape"]["fill_color"])
@@ -2026,6 +2027,16 @@ class MainWindow(QtWidgets.QMainWindow):
         self.openNextImg()
 
     def importDirImages(self, dirpath, pattern=None, load=True):
+        if os.path.isfile(dirpath + "/awk_label.txt"):
+            with open(dirpath + "/awk_label.txt", "r", encoding="utf-8") as f:
+                for line in f:
+                    text = line.strip()
+                    shape = Shape(
+                        label=line.strip(),
+                        shape_type=None,
+                        group_id=None
+                    )
+                    self.addLabel(shape)
         self.actions.openNextImg.setEnabled(True)
         self.actions.openPrevImg.setEnabled(True)
 
