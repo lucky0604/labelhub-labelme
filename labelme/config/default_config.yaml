@@ -100,6 +100,6 @@ shortcuts:
   edit_label: Ctrl+E
   toggle_keep_prev_mode: Ctrl+P
   # awk custom shortcuts
-  hide_all: Ctrl+1
-  show_all: Ctrl+2
+  hide_all: Ctrl+H
+  show_all: Ctrl+A
   cancel_edit: Ctrl+3
