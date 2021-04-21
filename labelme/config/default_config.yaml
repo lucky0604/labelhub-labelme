@@ -66,10 +66,10 @@ canvas:
   double_click: close
 
 shortcuts:
-  close: Ctrl+W
+  # close: Ctrl+W
   open: Ctrl+O
   open_dir: Ctrl+U
-  quit: Ctrl+Q
+  # quit: Ctrl+Q
   save: Ctrl+S
   save_as: Ctrl+Shift+S
   save_to: null

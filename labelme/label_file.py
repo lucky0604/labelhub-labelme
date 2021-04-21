@@ -93,8 +93,7 @@ class LabelCocoFile(object):
             for i in k.get("shapes"):
                 label_set.add(i.get("label"))
             images.append(image_obj)
-
-            print(k, ' ----- key ----')
+            print(k , ' ----------- key -------')
         categories = []
         for m in label_set:
             category_obj = dict()

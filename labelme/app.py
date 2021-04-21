@@ -136,7 +136,6 @@ class MainWindow(QtWidgets.QMainWindow):
                 "Press 'Esc' to deselect."
             )
         )
-        # TODO: here to add txt labels
         if self._config["labels"]:
             for label in self._config["labels"]:
                 item = self.uniqLabelList.createItemFromLabel(label)
@@ -213,7 +212,7 @@ class MainWindow(QtWidgets.QMainWindow):
         quit = action(
             self.tr("&Quit"),
             self.close,
-            shortcuts["quit"],
+            # shortcuts["quit"],
             "quit",
             self.tr("Quit application"),
         )
@@ -311,7 +310,7 @@ class MainWindow(QtWidgets.QMainWindow):
         close = action(
             "&Close",
             self.closeFile,
-            shortcuts["close"],
+            # shortcuts["close"],
             "close",
             "Close current file",
         )
@@ -394,7 +393,7 @@ class MainWindow(QtWidgets.QMainWindow):
         copy = action(
             self.tr("Duplicate Polygons"),
             self.copySelectedShape,
-            shortcuts["duplicate_polygon"],
+            # shortcuts["duplicate_polygon"],
             "copy",
             self.tr("Create a duplicate of the selected polygons"),
             enabled=False,
