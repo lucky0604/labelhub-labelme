@@ -120,6 +120,14 @@ class LabelCocoFile(object):
                     if a.get("imagePath") == j.get("file_name"):
                         annotation_obj["image_id"] = j.get("id")
                 seg = []
+                if b.get("points")[0][0] < 0:
+                    b.get("points")[0][0] = 0
+                elif b.get("points")[0][1] < 0:
+                    b.get("points")[0][1] = 0
+                elif b.get("points")[1][0] < 0:
+                    b.get("points")[1][0] = 0
+                elif b.get("points")[1][1] < 0:
+                    b.get("points")[1][1] = 0
                 seg.append(b.get("points")[0][0])
                 seg.append(b.get("points")[0][1])
                 seg.append(b.get("points")[1][0])
@@ -127,9 +135,9 @@ class LabelCocoFile(object):
                 annotation_obj["segmentation"].append(seg)
                 annotation_obj["bbox"].append(b.get("points")[0][0])
                 annotation_obj["bbox"].append(b.get("points")[0][1])
-                annotation_obj["bbox"].append(b.get("points")[1][0] - b.get("points")[0][0])
-                annotation_obj["bbox"].append(b.get("points")[1][1] - b.get("points")[0][1])
-                annotation_obj["area"] = (b.get("points")[1][0] - b.get("points")[0][0]) * (b.get("points")[1][1] - b.get("points")[0][1])
+                annotation_obj["bbox"].append(abs(b.get("points")[1][0] - b.get("points")[0][0]))
+                annotation_obj["bbox"].append(abs(b.get("points")[1][1] - b.get("points")[0][1]))
+                annotation_obj["area"] = abs(b.get("points")[1][0] - b.get("points")[0][0]) * abs(b.get("points")[1][1] - b.get("points")[0][1])
                 annotation_id += 1
                 annotations.append(annotation_obj)
 
@@ -317,7 +325,8 @@ class LabelFile(object):
             flags=flags,
             shapes=shapes,
             imagePath=imagePath,
-            imageData=imageData,
+            # imageData=imageData,
+            imageData=None,
             imageHeight=imageHeight,
             imageWidth=imageWidth,
         )
