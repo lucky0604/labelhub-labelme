@@ -120,6 +120,10 @@ class LabelCocoFile(object):
                     if a.get("imagePath") == j.get("file_name"):
                         annotation_obj["image_id"] = j.get("id")
                 seg = []
+                if len(b.get("points")) < 2:
+                    print(a.get("imagePath"))
+                if len(b.get("points")[0]) < 2:
+                    print(a.get("imagePath"))
                 if b.get("points")[0][0] < 0:
                     b.get("points")[0][0] = 0
                 elif b.get("points")[0][1] < 0:
