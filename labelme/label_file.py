@@ -132,16 +132,23 @@ class LabelCocoFile(object):
                     b.get("points")[1][0] = 0
                 elif b.get("points")[1][1] < 0:
                     b.get("points")[1][1] = 0
-                seg.append(b.get("points")[0][0])
-                seg.append(b.get("points")[0][1])
-                seg.append(b.get("points")[1][0])
-                seg.append(b.get("points")[1][1] - b.get("points")[0][1])
+                xmin = int(min(b.get("points")[0][0], b.get("points")[1][0]))
+                ymin = int(min(b.get("points")[0][1], b.get("points")[1][1]))
+                xmax = int(max(b.get("points")[0][0], b.get("points")[1][0]))
+                ymax = int(max(b.get("points")[0][1], b.get("points")[1][1]))
+                width = abs(xmax - xmin)
+                height = abs(ymax - ymin)
+                seg.append(xmin)
+                seg.append(ymin)
+                seg.append(xmax)
+                seg.append(ymax)
+
                 annotation_obj["segmentation"].append(seg)
-                annotation_obj["bbox"].append(b.get("points")[0][0])
-                annotation_obj["bbox"].append(b.get("points")[0][1])
-                annotation_obj["bbox"].append(abs(b.get("points")[1][0] - b.get("points")[0][0]))
-                annotation_obj["bbox"].append(abs(b.get("points")[1][1] - b.get("points")[0][1]))
-                annotation_obj["area"] = abs(b.get("points")[1][0] - b.get("points")[0][0]) * abs(b.get("points")[1][1] - b.get("points")[0][1])
+                annotation_obj["bbox"].append(xmin)
+                annotation_obj["bbox"].append(ymin)
+                annotation_obj["bbox"].append(width)
+                annotation_obj["bbox"].append(height)
+                annotation_obj["area"] = height * width
                 annotation_id += 1
                 annotations.append(annotation_obj)
 
