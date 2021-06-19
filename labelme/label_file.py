@@ -152,18 +152,14 @@ class LabelCocoFile(object):
                 annotation_id += 1
                 annotations.append(annotation_obj)
 
-
-
         data["info"] = info
         data["licenses"] = licenses
         data["images"] = images
         data["categories"] = categories
         data["annotations"] = annotations
 
-
         with open(folder + "/coco.json", "w") as f:
             json.dump(data, f, ensure_ascii=False, indent=2, cls=DateEncoder)
-
 
     @staticmethod
     def read_json_file(foldername):
